@@ -64,14 +64,39 @@ def leiaCoordenadaColuna():
         else:
             return linha
 
+def imprimePontuacao(jogador, pontuacao):
+    print(f'''
+               =====================================================
+               O jogador {jogador} está com {pontuacao} pontos 
+               =====================================================     
+          ''')
+
+
+def posicaoValida(tabuleiro):
+    while True:
+        if tabuleiro[0][0] == '-' or tabuleiro[0][1] == '-' or tabuleiro[0][2] =='-' or tabuleiro[1][0] =='-' or tabuleiro[1][1] =='-' or tabuleiro[1][2] =='-' or tabuleiro[2][0] =='-' or tabuleiro[2][1] =='-' or tabuleiro[2][2] == '-':
+            return True
+        else:
+            print('Posição inválida')
+
+
+def verificaVencedor(tabuleiro, linha, coluna):
+    if linha.all('x') or linha.all('o'):
+        return True
+    elif coluna.all('x') or coluna.all('o'):
+        return True
+    elif tabuleiro[0][0] and tabuleiro[1][1] and tabuleiro[2][2] == 'x' or tabuleiro[0][2] and tabuleiro[1][1] and tabuleiro[2][0]:
+        return True
+        
+    
+        
+    
 
 
 
 
 
-
-
-imprimeMenuPrincipal()
-leiaCoordenadaLinha()
-matriz = inicializarTabuleiro()
-imprimirTabuleiro(matriz)
+# imprimeMenuPrincipal()
+# leiaCoordenadaLinha()
+# matriz = inicializarTabuleiro()
+# imprimirTabuleiro(matriz)
