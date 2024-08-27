@@ -32,6 +32,38 @@ def imprimeMenuPrincipal():
         else:
             return menu
                 
+def leiaCoordenadaLinha():
+    while True:
+        linha = int(input('''
+                ========================          
+                Você quer colocar em qual linha? 
+                Ex: 
+                ¹_|²_|³_
+                ===========================
+                Sua Reposta:
+                '''))
+        if linha > 3 or linha < 1:
+            print('por favor tente coloque em uma posicao valida')
+        else:
+            return linha
+        
+def leiaCoordenadaColuna():
+    while True:
+        linha = int(input('''
+                ========================          
+                Você quer colocar em qual coluna? 
+                Ex: 
+                ¹_|_|_
+                ²_|_|_
+                ³_|_|_
+                ===========================
+                Sua Reposta: 
+                '''))
+        if linha > 3 or linha < 1:
+            print('por favor tente coloque em uma posicao valida')
+        else:
+            return linha
+
 
 
 
@@ -40,5 +72,6 @@ def imprimeMenuPrincipal():
 
 
 imprimeMenuPrincipal()
+leiaCoordenadaLinha()
 matriz = inicializarTabuleiro()
 imprimirTabuleiro(matriz)
