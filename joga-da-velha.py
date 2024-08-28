@@ -5,7 +5,6 @@ def inicializarTabuleiro():
              ['-','-','-']]
     return velha
 
-
 def imprimirTabuleiro(velha):
     jogo_da_velha = (f'''
             {velha[0][0]}|{velha[0][1]}|{velha[0][2]}
@@ -13,7 +12,6 @@ def imprimirTabuleiro(velha):
             {velha[2][0]}|{velha[2][1]}|{velha[2][2]}
                 ''')
     print(jogo_da_velha)
-
 
 def imprimeMenuPrincipal():
     while True:
@@ -136,7 +134,6 @@ tudo apos isso e so o dificil
 (tirar o comentario e colocar aqui, antes do modo dificil deixando claro)
 '''
 
-
 def modoDificil(tabuleiro):
     dif =  print ('''
                     =============================================
@@ -155,53 +152,54 @@ def modoDificil(tabuleiro):
                             ''')
     
     
-def jogar(coluna, linha, tabuleiro, posicao):
+def jogar(coluna, linha, tabuleiro, posicao, maquina):
     while True:
-        if posicao == True:
+        if posicao == True and maquina == False:
             tabuleiro[coluna][linha] = "X"
+            break
+        elif posicao == True and maquina == True:
+            tabuleiro[coluna][linha] = "O"
             break
         elif posicao == False:
             print('posição errada')
         
-    
-    
-    
-def jogadaMaquinaDificil(tabuleiro, posicaoValida,jogar):
-    jogar = False
-    if tabuleiro[1][1] == posicaoValida:
-        jogar = True
-    elif tabuleiro[0][0] == 'O' and tabuleiro[0][1] == 'O' and tabuleiro[0][2] == posicaoValida:
-        jogar = True
-    elif tabuleiro[1][0] == 'O' and tabuleiro[1][1] == 'O' and tabuleiro[1][2] == posicaoValida:
-        jogar = True
-    elif tabuleiro[2][0] == 'O' and tabuleiro[2][1] == 'O' and tabuleiro[2][2] == posicaoValida:
-        jogar = True
-    elif tabuleiro[0][0] == 'O' and tabuleiro[1][1] == 'O' and tabuleiro[2][2] == posicaoValida:
-        jogar = True
-    elif tabuleiro[0][2] == 'O' and tabuleiro[1][1] == 'O' and tabuleiro[2][2] == posicaoValida:
-        jogar = True
-    elif tabuleiro[0][0] == 'X' and tabuleiro[0][1] == 'X' and tabuleiro[0][2] == posicaoValida:
-        jogar = True
-    elif tabuleiro[1][0] == 'X' and tabuleiro[1][1] == 'X' and tabuleiro[1][2] == posicaoValida:
-        jogar = True
-    elif tabuleiro[2][0] == 'X' and tabuleiro[2][1] == 'X' and tabuleiro[2][2] == posicaoValida:
-        jogar = True
-    elif tabuleiro[0][0] == 'X' and tabuleiro[1][1] == 'X' and tabuleiro[2][2] == posicaoValida:
-        jogar = True
-    elif tabuleiro[0][2] == 'X' and tabuleiro[1][1] == 'X' and tabuleiro[2][2] == posicaoValida:
-        jogar = True
-    elif tabuleiro[0][0] == posicaoValida and tabuleiro[2][2] == posicaoValida:
-        jogar = True
-    elif tabuleiro[0][2] == posicaoValida and tabuleiro[2][0] == posicaoValida:
-        jogar = True
-    elif tabuleiro[0][1] == posicaoValida:
-        jogar = True
-    elif tabuleiro[1][0] == posicaoValida:
-        jogar = True
-    elif tabuleiro[1][2] == posicaoValida:
-        jogar = True
-    elif tabuleiro[2][1] == posicaoValida:
-        jogar = True      
+def jogadaMaquinaDificil(tabuleiro, posicao):
+    coluna = leiaCoordenadaColuna
+    linha = leiaCoordenadaLinha
+    if tabuleiro[1][1] == posicao == True:
+        jogar(coluna, linha, tabuleiro, posicao, maquina=True)
+    elif tabuleiro[0][0] == 'O' and tabuleiro[0][1] == 'O' and tabuleiro[0][2] and posicao == True:
+        jogar(coluna, linha, tabuleiro, posicao, maquina=True)
+    elif tabuleiro[1][0] == 'O' and tabuleiro[1][1] == 'O' and tabuleiro[1][2]:
+        jogar(coluna, linha, tabuleiro, posicao, maquina=True)
+    elif tabuleiro[2][0] == 'O' and tabuleiro[2][1] == 'O' and tabuleiro[2][2]:
+       jogar(coluna, linha, tabuleiro, posicao, maquina=True)
+    elif tabuleiro[0][0] == 'O' and tabuleiro[1][1] == 'O' and tabuleiro[2][2]:
+       jogar(coluna, linha, tabuleiro, posicao, maquina=True)
+    elif tabuleiro[0][2] == 'O' and tabuleiro[1][1] == 'O' and tabuleiro[2][2]:
+        jogar(coluna, linha, tabuleiro, posicao, maquina=True)
+    elif tabuleiro[0][0] == 'X' and tabuleiro[0][1] == 'X' and tabuleiro[0][2]:
+        jogar(coluna, linha, tabuleiro, posicao, maquina=True)
+    elif tabuleiro[1][0] == 'X' and tabuleiro[1][1] == 'X' and tabuleiro[1][2]:
+       jogar(coluna, linha, tabuleiro, posicao, maquina=True)
+    elif tabuleiro[2][0] == 'X' and tabuleiro[2][1] == 'X' and tabuleiro[2][2]:
+        jogar(coluna, linha, tabuleiro, posicao, maquina=True)
+    elif tabuleiro[0][0] == 'X' and tabuleiro[1][1] == 'X' and tabuleiro[2][2]:
+        jogar(coluna, linha, tabuleiro, posicao, maquina=True)
+    elif tabuleiro[0][2] == 'X' and tabuleiro[1][1] == 'X' and tabuleiro[2][2]:
+       jogar(coluna, linha, tabuleiro, posicao, maquina=True)
+    elif posicao == True and tabuleiro[0][0] and tabuleiro[2][2]:
+       jogar(coluna, linha, tabuleiro, posicao, maquina=True)
+    elif posicao == True and tabuleiro[0][2] and tabuleiro[2][0]:
+       jogar(coluna, linha, tabuleiro, posicao, maquina=True)
+    elif posicao == True and tabuleiro[0][2] and tabuleiro[2][0]:
+        jogar(coluna, linha, tabuleiro, posicao, maquina=True)
+    elif posicao == True and tabuleiro[0][2] and tabuleiro[2][0]:
+        jogar(coluna, linha, tabuleiro, posicao, maquina=True)
+    elif posicao == True and tabuleiro[0][2] and tabuleiro[2][0]:
+       jogar(coluna, linha, tabuleiro, posicao, maquina=True)
+    elif posicao == True and tabuleiro[0][2] and tabuleiro[2][0]:
+      jogar(coluna, linha, tabuleiro, posicao, maquina=True)
         
         
 def main():
@@ -216,15 +214,20 @@ def main():
     if menu == 3:
         modoDificil(matriz)
         for jogo in range(0,3):
-            linha = leiaCoordenadaLinha()
             coluna = leiaCoordenadaColuna()
-            jogar(coluna, linha, matriz, posicaoValida(linha, coluna, matriz))
+            linha = leiaCoordenadaLinha()
+            maquina = False
+            jogar(coluna, linha, matriz, posicaoValida(linha, coluna, matriz), maquina)
+            # maquina
+            maquina = True
+            jogadaMaquinaDificil(matriz,posicaoValida(linha, coluna, matriz))
+            jogar(coluna, linha, matriz, posicaoValida(linha, coluna, matriz), maquina)
+            #imprimir
             imprimirTabuleiro(matriz)
         verificaVencedor(matriz)
         verificaVelha(verificaVencedor(matriz))
         if verificaVencedor(matriz) == True:
             pontuacao +=1
             print(f'{imprimePontuacao(pontuacao)}')
-
 
 main()
