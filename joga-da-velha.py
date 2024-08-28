@@ -45,7 +45,7 @@ def leiaCoordenadaLinha():
         return linha
         
 def leiaCoordenadaColuna():
-        linha = int(input('''
+        coluna = int(input('''
                 ========================          
                 Você quer colocar em qual coluna? 
                 Ex: 
@@ -55,7 +55,7 @@ def leiaCoordenadaColuna():
                 ===========================
                 Sua Reposta: 
                 '''))
-        return linha
+        return coluna
 
 def imprimePontuacao(jogador, pontuacao):
     print(f'''
@@ -66,9 +66,11 @@ def imprimePontuacao(jogador, pontuacao):
 
 
 def posicaoValida(linha,coluna, tabuleiro):
-    if tabuleiro[coluna][linha] <= 2 or tabuleiro[coluna][linha] >= 0 and tabuleiro[0][0] == '-' or tabuleiro[0][1] == '-' or tabuleiro[0][2] =='-' or tabuleiro[1][0] =='-' or tabuleiro[1][1] =='-' or tabuleiro[1][2] =='-' or tabuleiro[2][0] =='-' or tabuleiro[2][1] =='-' or tabuleiro[2][2] == '-':
-        return True
-   
+    coluna = leiaCoordenadaColuna()
+    linha = leiaCoordenadaLinha()
+    if coluna <= 2 and linha <= 2 or coluna >= 0 and linha >=0:
+        if tabuleiro[0][0] == '-' or tabuleiro[0][1] == '-' or tabuleiro[0][2] =='-' or tabuleiro[1][0] =='-' or tabuleiro[1][1] =='-' or tabuleiro[1][2] =='-' or tabuleiro[2][0] =='-' or tabuleiro[2][1] == '-' or tabuleiro[2][2] == '-':
+            return True
    
 def verificaVencedor(inicializarTabuleiro, jogador):
     if inicializarTabuleiro()[0][0] == "X" and inicializarTabuleiro()[0][1] == "X" and inicializarTabuleiro()[0][2] == "X":
@@ -158,12 +160,9 @@ def modoDificil(tabuleiro):
             break
     
     
-def jogar(coluna, linha, tabuleiro, tipo):
-    coluna = leiaCoordenadaColuna()
-    linha = leiaCoordenadaLinha()
-    posicao = posicaoValida(leiaCoordenadaLinha, leiaCoordenadaColuna, tabuleiro)
+def jogar(coluna, linha, tabuleiro, posicao):
     while True:
-        if tabuleiro[coluna][linha] == posicao:
+        if posicao == True:
             tabuleiro[coluna][linha] = "X"
             break
         else:
@@ -216,4 +215,8 @@ def jogadaMaquinaDificil(tabuleiro, posicaoValida,jogar):
         jogar = True      
         
         
-        
+matriz = inicializarTabuleiro()      
+coluna = leiaCoordenadaColuna()
+linha = leiaCoordenadaLinha()
+jogar(coluna, linha, matriz, posicaoValida(linha, coluna, matriz))
+imprimirTabuleiro(matriz)
