@@ -66,11 +66,11 @@ def imprimePontuacao(jogador, pontuacao):
 
 
 def posicaoValida(linha,coluna, tabuleiro):
-    coluna = leiaCoordenadaColuna()
-    linha = leiaCoordenadaLinha()
     if coluna <= 2 and linha <= 2 or coluna >= 0 and linha >=0:
         if tabuleiro[0][0] == '-' or tabuleiro[0][1] == '-' or tabuleiro[0][2] =='-' or tabuleiro[1][0] =='-' or tabuleiro[1][1] =='-' or tabuleiro[1][2] =='-' or tabuleiro[2][0] =='-' or tabuleiro[2][1] == '-' or tabuleiro[2][2] == '-':
             return True
+    else:
+        return False
    
 def verificaVencedor(inicializarTabuleiro, jogador):
     if inicializarTabuleiro()[0][0] == "X" and inicializarTabuleiro()[0][1] == "X" and inicializarTabuleiro()[0][2] == "X":
@@ -147,17 +147,11 @@ def modoDificil(tabuleiro):
                     Melhor de 3
                     ===============================================
                     ''')
-    while True:
-        for jogo in range(0, 2):
-            jog = int(input(f'''
+    jog = print(f'''
                     ================================================
                     Você começa, e irá ser o X
                     ================================================
-                    {jogar()}
-                            '''))
-        cont = int(input('Você quer continuar?: [1]Sim [2]Não'))
-        if cont == 2:
-            break
+                            ''')
     
     
 def jogar(coluna, linha, tabuleiro, posicao):
@@ -165,15 +159,9 @@ def jogar(coluna, linha, tabuleiro, posicao):
         if posicao == True:
             tabuleiro[coluna][linha] = "X"
             break
-        else:
-            print('Posição errada, tente novamente')
+        elif posicao == False:
+            print('posição errada')
         
-    
-        
-    
-    
-    
-    
     
     
     
@@ -215,8 +203,20 @@ def jogadaMaquinaDificil(tabuleiro, posicaoValida,jogar):
         jogar = True      
         
         
-matriz = inicializarTabuleiro()      
-coluna = leiaCoordenadaColuna()
-linha = leiaCoordenadaLinha()
-jogar(coluna, linha, matriz, posicaoValida(linha, coluna, matriz))
-imprimirTabuleiro(matriz)
+def main():
+    matriz = inicializarTabuleiro()
+    menu = imprimeMenuPrincipal()
+    '''
+    aqui voces definem o tipo q vcs estao fazendo
+    sigam oq eu fiz no menu 3 que e o dificil
+    praticamente nao escreve nada aqui, deve estar tudo feito nas funcoes
+    '''
+    if menu == 3:
+        modoDificil(matriz)
+        linha = leiaCoordenadaLinha()
+        coluna = leiaCoordenadaColuna()
+        jogar(coluna, linha, matriz, posicaoValida(linha, coluna, matriz))
+        imprimirTabuleiro(matriz)
+
+
+main()
