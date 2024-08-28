@@ -34,36 +34,28 @@ def imprimeMenuPrincipal():
         
 
 def leiaCoordenadaLinha():
-    while True:
         linha = int(input('''
                 ========================          
                 Você quer colocar em qual linha? 
                 Ex: 
-                ¹_|²_|³_
+                °_|¹_|²_
                 ===========================
                 Sua Reposta:
                 '''))
-        if linha > 3 or linha < 1:
-            print('por favor tente colocar em uma posicao valida')
-        else:
-            return linha
+        return linha
         
 def leiaCoordenadaColuna():
-    while True:
         linha = int(input('''
                 ========================          
                 Você quer colocar em qual coluna? 
                 Ex: 
+                °_|_|_
                 ¹_|_|_
                 ²_|_|_
-                ³_|_|_
                 ===========================
                 Sua Reposta: 
                 '''))
-        if linha > 3 or linha < 1:
-            print('por favor tente colocar em uma posicao valida')
-        else:
-            return linha
+        return linha
 
 def imprimePontuacao(jogador, pontuacao):
     print(f'''
@@ -73,12 +65,9 @@ def imprimePontuacao(jogador, pontuacao):
           ''')
 
 
-def posicaoValida(tabuleiro):
-    while True:
-        if tabuleiro[0][0] == '-' or tabuleiro[0][1] == '-' or tabuleiro[0][2] =='-' or tabuleiro[1][0] =='-' or tabuleiro[1][1] =='-' or tabuleiro[1][2] =='-' or tabuleiro[2][0] =='-' or tabuleiro[2][1] =='-' or tabuleiro[2][2] == '-':
-            return True
-        else:
-            print('Posição inválida')
+def posicaoValida(linha,coluna, tabuleiro):
+    if tabuleiro[coluna][linha] <= 2 or tabuleiro[coluna][linha] >= 0 and tabuleiro[0][0] == '-' or tabuleiro[0][1] == '-' or tabuleiro[0][2] =='-' or tabuleiro[1][0] =='-' or tabuleiro[1][1] =='-' or tabuleiro[1][2] =='-' or tabuleiro[2][0] =='-' or tabuleiro[2][1] =='-' or tabuleiro[2][2] == '-':
+        return True
    
    
 def verificaVencedor(inicializarTabuleiro, jogador):
@@ -162,14 +151,26 @@ def modoDificil(tabuleiro):
                     ================================================
                     Você começa, e irá ser o X
                     ================================================
-                    {leiaCoordenadaColuna()}\n 
-                    {leiaCoordenadaLinha()}
+                    {jogar()}
                             '''))
-
-        break
+        cont = int(input('Você quer continuar?: [1]Sim [2]Não'))
+        if cont == 2:
+            break
     
     
+def jogar(coluna, linha, tabuleiro, tipo):
+    coluna = leiaCoordenadaColuna()
+    linha = leiaCoordenadaLinha()
+    posicao = posicaoValida(leiaCoordenadaLinha, leiaCoordenadaColuna, tabuleiro)
+    while True:
+        if tabuleiro[coluna][linha] == posicao:
+            tabuleiro[coluna][linha] = "X"
+            break
+        else:
+            print('Posição errada, tente novamente')
+        
     
+        
     
     
     
