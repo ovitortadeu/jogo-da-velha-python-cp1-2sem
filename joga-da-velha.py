@@ -57,10 +57,11 @@ def leiaCoordenadaColuna():
                 '''))
         return coluna
 
-def imprimePontuacao(jogador, pontuacao):
+def imprimePontuacao(pontuacao):
     print(f'''
+               Pontuação
                =====================================================
-               O jogador {jogador} está com {pontuacao} pontos 
+                                {pontuacao} 
                =====================================================     
           ''')
 
@@ -72,53 +73,53 @@ def posicaoValida(linha,coluna, tabuleiro):
     else:
         return False
    
-def verificaVencedor(inicializarTabuleiro, jogador):
-    if inicializarTabuleiro()[0][0] == "X" and inicializarTabuleiro()[0][1] == "X" and inicializarTabuleiro()[0][2] == "X":
+def verificaVencedor(matriz):
+    if matriz[0][0] == "X" and matriz[0][1] == "X" and matriz[0][2] == "X":
         jogador = True
         return jogador
-    elif inicializarTabuleiro()[1][0] == "X" and inicializarTabuleiro()[1][1] == "X" and inicializarTabuleiro()[1][2] == "X":
+    elif matriz[1][0] == "X" and matriz[1][1] == "X" and matriz[1][2] == "X":
         jogador = True
         return jogador
-    elif inicializarTabuleiro()[2][0] == "X" and inicializarTabuleiro()[2][1] == "X" and inicializarTabuleiro()[2][2] == "X":
+    elif matriz[2][0] == "X" and matriz[2][1] == "X" and matriz[2][2] == "X":
         jogador = True
         return jogador  
-    elif inicializarTabuleiro()[0][0] == "X" and inicializarTabuleiro()[1][0] == "X" and inicializarTabuleiro()[2][0] == "X":
+    elif matriz[0][0] == "X" and matriz[1][0] == "X" and matriz[2][0] == "X":
         jogador = True
         return jogador  
-    elif inicializarTabuleiro()[0][1] == "X" and inicializarTabuleiro()[1][1] == "X" and inicializarTabuleiro()[2][1] == "X":
+    elif matriz[0][1] == "X" and matriz[1][1] == "X" and matriz[2][1] == "X":
         jogador = True
         return jogador
-    elif inicializarTabuleiro()[0][2] == "X" and inicializarTabuleiro()[1][2] == "X" and inicializarTabuleiro()[2][2] == "X":
+    elif matriz[0][2] == "X" and matriz[1][2] == "X" and matriz[2][2] == "X":
         jogador = True
         return jogador
-    elif inicializarTabuleiro()[0][0] == "X" and inicializarTabuleiro()[1][1] == "X" and inicializarTabuleiro()[2][2] == "X":
+    elif matriz[0][0] == "X" and matriz[1][1] == "X" and matriz[2][2] == "X":
         jogador = True
         return jogador
-    elif inicializarTabuleiro()[0][2] == "X" and inicializarTabuleiro()[1][1] == "X" and inicializarTabuleiro()[2][0] == "X":
+    elif matriz[0][2] == "X" and matriz[1][1] == "X" and matriz[2][0] == "X":
         jogador = True
         return jogador
-    elif inicializarTabuleiro()[0][0] == "O" and inicializarTabuleiro()[0][1] == "O" and inicializarTabuleiro()[0][2] == "O":
+    elif matriz[0][0] == "O" and matriz[0][1] == "O" and matriz[0][2] == "O":
         jogador = True
         return jogador
-    elif inicializarTabuleiro()[1][0] == "O" and inicializarTabuleiro()[1][1] == "O" and inicializarTabuleiro()[1][2] == "O":
+    elif matriz[1][0] == "O" and matriz[1][1] == "O" and matriz[1][2] == "O":
         jogador = True
         return jogador
-    elif inicializarTabuleiro()[2][0] == "O" and inicializarTabuleiro()[2][1] == "O" and inicializarTabuleiro()[2][2] == "O":
+    elif matriz[2][0] == "O" and matriz[2][1] == "O" and matriz[2][2] == "O":
         jogador = True
         return jogador  
-    elif inicializarTabuleiro()[0][0] == "O" and inicializarTabuleiro()[1][0] == "O" and inicializarTabuleiro()[2][0] == "O":
+    elif matriz[0][0] == "O" and matriz[1][0] == "O" and matriz[2][0] == "O":
         jogador = True
         return jogador  
-    elif inicializarTabuleiro()[0][1] == "O" and inicializarTabuleiro()[1][1] == "O" and inicializarTabuleiro()[2][1] == "O":
+    elif matriz[0][1] == "O" and matriz[1][1] == "O" and matriz[2][1] == "O":
         jogador = True
         return jogador
-    elif inicializarTabuleiro()[0][2] == "O" and inicializarTabuleiro()[1][2] == "O" and inicializarTabuleiro()[2][2] == "O":
+    elif matriz[0][2] == "O" and matriz[1][2] == "O" and matriz[2][2] == "O":
         jogador = True
         return jogador
-    elif inicializarTabuleiro()[0][0] == "O" and inicializarTabuleiro()[1][1] == "O" and inicializarTabuleiro()[2][2] == "O":
+    elif matriz[0][0] == "O" and matriz[1][1] == "O" and matriz[2][2] == "O":
         jogador = True
         return jogador
-    elif inicializarTabuleiro()[0][2] == "O" and inicializarTabuleiro()[1][1] == "O" and inicializarTabuleiro()[2][0] == "O":
+    elif matriz[0][2] == "O" and matriz[1][1] == "O" and matriz[2][0] == "O":
         jogador = True
         return jogador
     else:
@@ -206,6 +207,7 @@ def jogadaMaquinaDificil(tabuleiro, posicaoValida,jogar):
 def main():
     matriz = inicializarTabuleiro()
     menu = imprimeMenuPrincipal()
+    pontuacao = 0
     '''
     aqui voces definem o tipo q vcs estao fazendo
     sigam oq eu fiz no menu 3 que e o dificil
@@ -213,10 +215,16 @@ def main():
     '''
     if menu == 3:
         modoDificil(matriz)
-        linha = leiaCoordenadaLinha()
-        coluna = leiaCoordenadaColuna()
-        jogar(coluna, linha, matriz, posicaoValida(linha, coluna, matriz))
-        imprimirTabuleiro(matriz)
+        for jogo in range(0,3):
+            linha = leiaCoordenadaLinha()
+            coluna = leiaCoordenadaColuna()
+            jogar(coluna, linha, matriz, posicaoValida(linha, coluna, matriz))
+            imprimirTabuleiro(matriz)
+        verificaVencedor(matriz)
+        verificaVelha(verificaVencedor(matriz))
+        if verificaVencedor(matriz) == True:
+            pontuacao +=1
+            print(f'{imprimePontuacao(pontuacao)}')
 
 
 main()
