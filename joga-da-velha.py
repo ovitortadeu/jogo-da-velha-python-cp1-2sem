@@ -33,75 +33,186 @@ def imprimeMenuPrincipal():
            return menu
         
 
-def leiaCordenadaLinha():
+def leiaCoordenadaLinha():
     while True:
-        linha = int(input("Digite a linha que você quer jogar de 1 a 3: "))
+        linha = int(input('''
+                ========================          
+                Você quer colocar em qual linha? 
+                Ex: 
+                ¹_|²_|³_
+                ===========================
+                Sua Reposta:
+                '''))
         if linha > 3 or linha < 1:
-            print('Escolha um número de 1 a 3')
-        else: 
+            print('por favor tente colocar em uma posicao valida')
+        else:
+            return linha
+        
+def leiaCoordenadaColuna():
+    while True:
+        linha = int(input('''
+                ========================          
+                Você quer colocar em qual coluna? 
+                Ex: 
+                ¹_|_|_
+                ²_|_|_
+                ³_|_|_
+                ===========================
+                Sua Reposta: 
+                '''))
+        if linha > 3 or linha < 1:
+            print('por favor tente colocar em uma posicao valida')
+        else:
             return linha
 
-def leiaCordenadaColuna():
-    while True:
-        coluna = int(input("Digite a coluna que você quer jogar de 1 a 3: "))
-        if coluna > 3 or coluna < 1:
-            print('Escolha um número de 1 a 3')
-        else: 
-          return coluna
+def imprimePontuacao(jogador, pontuacao):
+    print(f'''
+               =====================================================
+               O jogador {jogador} está com {pontuacao} pontos 
+               =====================================================     
+          ''')
 
-def posicaoValida(leiaCordenadaLinha, leiaCordenadaColuna , inicializarTabuleiro):
-    if inicializarTabuleiro[leiaCordenadaLinha][leiaCordenadaColuna] ==  "-":
-       return True
+
+def posicaoValida(tabuleiro):
+    while True:
+        if tabuleiro[0][0] == '-' or tabuleiro[0][1] == '-' or tabuleiro[0][2] =='-' or tabuleiro[1][0] =='-' or tabuleiro[1][1] =='-' or tabuleiro[1][2] =='-' or tabuleiro[2][0] =='-' or tabuleiro[2][1] =='-' or tabuleiro[2][2] == '-':
+            return True
+        else:
+            print('Posição inválida')
    
-def verificaVencedor(inicializarTabuleiro):
-    placarJogador1 = 0
-    placarJogador2 = 0
+   
+def verificaVencedor(inicializarTabuleiro, jogador):
     if inicializarTabuleiro()[0][0] == "X" and inicializarTabuleiro()[0][1] == "X" and inicializarTabuleiro()[0][2] == "X":
-        placarJogador1 += 1
+        jogador = True
+        return jogador
     elif inicializarTabuleiro()[1][0] == "X" and inicializarTabuleiro()[1][1] == "X" and inicializarTabuleiro()[1][2] == "X":
-        placarJogador1 += 1
+        jogador = True
+        return jogador
     elif inicializarTabuleiro()[2][0] == "X" and inicializarTabuleiro()[2][1] == "X" and inicializarTabuleiro()[2][2] == "X":
-        placarJogador1 += 1  
+        jogador = True
+        return jogador  
     elif inicializarTabuleiro()[0][0] == "X" and inicializarTabuleiro()[1][0] == "X" and inicializarTabuleiro()[2][0] == "X":
-        placarJogador1 += 1  
+        jogador = True
+        return jogador  
     elif inicializarTabuleiro()[0][1] == "X" and inicializarTabuleiro()[1][1] == "X" and inicializarTabuleiro()[2][1] == "X":
-        placarJogador1 += 1
+        jogador = True
+        return jogador
     elif inicializarTabuleiro()[0][2] == "X" and inicializarTabuleiro()[1][2] == "X" and inicializarTabuleiro()[2][2] == "X":
-        placarJogador1 += 1
+        jogador = True
+        return jogador
     elif inicializarTabuleiro()[0][0] == "X" and inicializarTabuleiro()[1][1] == "X" and inicializarTabuleiro()[2][2] == "X":
-        placarJogador1 += 1
+        jogador = True
+        return jogador
     elif inicializarTabuleiro()[0][2] == "X" and inicializarTabuleiro()[1][1] == "X" and inicializarTabuleiro()[2][0] == "X":
-        placarJogador1 += 1
+        jogador = True
+        return jogador
     elif inicializarTabuleiro()[0][0] == "O" and inicializarTabuleiro()[0][1] == "O" and inicializarTabuleiro()[0][2] == "O":
-        placarJogador2 += 1
+        jogador = True
+        return jogador
     elif inicializarTabuleiro()[1][0] == "O" and inicializarTabuleiro()[1][1] == "O" and inicializarTabuleiro()[1][2] == "O":
-        placarJogador2 += 1
+        jogador = True
+        return jogador
     elif inicializarTabuleiro()[2][0] == "O" and inicializarTabuleiro()[2][1] == "O" and inicializarTabuleiro()[2][2] == "O":
-        placarJogador2 += 1  
+        jogador = True
+        return jogador  
     elif inicializarTabuleiro()[0][0] == "O" and inicializarTabuleiro()[1][0] == "O" and inicializarTabuleiro()[2][0] == "O":
-        placarJogador2 += 1  
+        jogador = True
+        return jogador  
     elif inicializarTabuleiro()[0][1] == "O" and inicializarTabuleiro()[1][1] == "O" and inicializarTabuleiro()[2][1] == "O":
-        placarJogador2 += 1
+        jogador = True
+        return jogador
     elif inicializarTabuleiro()[0][2] == "O" and inicializarTabuleiro()[1][2] == "O" and inicializarTabuleiro()[2][2] == "O":
-        placarJogador2 += 1
+        jogador = True
+        return jogador
     elif inicializarTabuleiro()[0][0] == "O" and inicializarTabuleiro()[1][1] == "O" and inicializarTabuleiro()[2][2] == "O":
-        placarJogador2 += 1
+        jogador = True
+        return jogador
     elif inicializarTabuleiro()[0][2] == "O" and inicializarTabuleiro()[1][1] == "O" and inicializarTabuleiro()[2][0] == "O":
-        placarJogador2 += 1
+        jogador = True
+        return jogador
     else:
         return False
-        return True, placarJogador1, placarJogador2
 
 
-
-def verificaVelha(VerificaVencedor):
-    if VerificaVencedor == False:
+def verificaVelha(vencedor):
+    if vencedor == False:
         print("A partida deu empate")
-    else:
-        print("Alguma coisa deu errado ai irm")
 
-verificaVelha(verificaVencedor)
+'''
+façam os modos jxj e jxm facil aqui
+tudo apos isso e so o dificil
+(tirar o comentario e colocar aqui, antes do modo dificil deixando claro)
+'''
 
-#imprimeMenuPrincipal()
-#matriz = inicializarTabuleiro()
-#imprimirTabuleiro(matriz)
+
+def modoDificil(tabuleiro):
+    dif =  print ('''
+                    =============================================
+                    Bem vindo ao modo díficil, aqui é o
+                    lugar que é impossivel ganhar, somente
+                    empates e a vitória da máquina irão acontecer
+                    ==============================================
+                    Vamos começar!
+                    Melhor de 3
+                    ===============================================
+                    ''')
+    while True:
+        for jogo in range(0, 2):
+            jog = int(input(f'''
+                    ================================================
+                    Você começa, e irá ser o X
+                    ================================================
+                    {leiaCoordenadaColuna()}\n 
+                    {leiaCoordenadaLinha()}
+                            '''))
+
+        break
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+def jogadaMaquinaDificil(tabuleiro, posicaoValida,jogar):
+    jogar = False
+    if tabuleiro[1][1] == posicaoValida:
+        jogar = True
+    elif tabuleiro[0][0] == 'O' and tabuleiro[0][1] == 'O' and tabuleiro[0][2] == posicaoValida:
+        jogar = True
+    elif tabuleiro[1][0] == 'O' and tabuleiro[1][1] == 'O' and tabuleiro[1][2] == posicaoValida:
+        jogar = True
+    elif tabuleiro[2][0] == 'O' and tabuleiro[2][1] == 'O' and tabuleiro[2][2] == posicaoValida:
+        jogar = True
+    elif tabuleiro[0][0] == 'O' and tabuleiro[1][1] == 'O' and tabuleiro[2][2] == posicaoValida:
+        jogar = True
+    elif tabuleiro[0][2] == 'O' and tabuleiro[1][1] == 'O' and tabuleiro[2][2] == posicaoValida:
+        jogar = True
+    elif tabuleiro[0][0] == 'X' and tabuleiro[0][1] == 'X' and tabuleiro[0][2] == posicaoValida:
+        jogar = True
+    elif tabuleiro[1][0] == 'X' and tabuleiro[1][1] == 'X' and tabuleiro[1][2] == posicaoValida:
+        jogar = True
+    elif tabuleiro[2][0] == 'X' and tabuleiro[2][1] == 'X' and tabuleiro[2][2] == posicaoValida:
+        jogar = True
+    elif tabuleiro[0][0] == 'X' and tabuleiro[1][1] == 'X' and tabuleiro[2][2] == posicaoValida:
+        jogar = True
+    elif tabuleiro[0][2] == 'X' and tabuleiro[1][1] == 'X' and tabuleiro[2][2] == posicaoValida:
+        jogar = True
+    elif tabuleiro[0][0] == posicaoValida and tabuleiro[2][2] == posicaoValida:
+        jogar = True
+    elif tabuleiro[0][2] == posicaoValida and tabuleiro[2][0] == posicaoValida:
+        jogar = True
+    elif tabuleiro[0][1] == posicaoValida:
+        jogar = True
+    elif tabuleiro[1][0] == posicaoValida:
+        jogar = True
+    elif tabuleiro[1][2] == posicaoValida:
+        jogar = True
+    elif tabuleiro[2][1] == posicaoValida:
+        jogar = True      
+        
+        
+        
