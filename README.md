@@ -9,5 +9,4 @@ python
 
 projeto será feito com funções, com e sem paramêtro.
 
-também terá versionamento, com cada membro com sua branch.
 
