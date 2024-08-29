@@ -35,10 +35,9 @@ def leiaCoordenadaLinha():
 ========================          
 Você quer colocar em qual linha? 
 Ex:
-1 2 3          
-_|_|_
-_|_|_
-_|_|_
+¹_|_|_
+²_|_|_
+³_|_|_
 ===========================
 Sua Resposta: '''))
         if 1 <= linha <= 3:
@@ -51,9 +50,10 @@ def leiaCoordenadaColuna():
 ========================          
 Você quer colocar em qual coluna? 
 Ex: 
-¹_|_|_
-²_|_|_
-³_|_|_
+1 2 3          
+_|_|_
+_|_|_
+_|_|_
 ===========================
 Sua Resposta: '''))
         if 1 <= coluna <= 3:
@@ -130,10 +130,11 @@ Vamos começar!
 Jogador 1 começa, e irá ser o X
 ================================================
 ''')
-    
+
+    jogador_atual = 'X'  
+
     while True:
         tabuleiro = inicializarTabuleiro()
-        jogador_atual = 'X'
         
         while True:
             print(f"É a vez do jogador {jogador_atual}")
@@ -143,6 +144,7 @@ Jogador 1 começa, e irá ser o X
             if verificaVencedor(tabuleiro, jogador_atual):
                 print(f"Jogador {jogador_atual} Venceu!!")
                 pontuacao[jogador_atual] += 1
+                jogador_atual = 'O' if jogador_atual == 'X' else 'X'
                 break
             elif verificaVelha(tabuleiro):
                 print("Empate!!")
@@ -155,7 +157,8 @@ Jogador 1 começa, e irá ser o X
         repetir = input("Deseja jogar novamente? (s/n): ")
         if repetir != 's':
             break
-
+        else:
+            jogador_atual = 'O' if jogador_atual == 'X' and not verificaVencedor(tabuleiro, jogador_atual) else jogador_atual
 #função principal
 def main():
     pontuacao = {'X': 0, 'O': 0}
